@@ -1,11 +1,13 @@
+// server.js
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+
 const app = express();
 
-app.use(require("cors")());
+// Middleware
+app.use(cors());
 app.use(express.json());
-app.use("/api", require("./routes/user"));
 
 // ✅ Kết nối MongoDB
 mongoose
@@ -15,7 +17,7 @@ mongoose
 
 // ✅ Import route
 const userRoutes = require("./routes/user");
-app.use("/api", userRoutes); // <-- phải có dòng này
+app.use("/api", userRoutes);
 
 // ✅ Chạy server
 const PORT = process.env.PORT || 3001;
